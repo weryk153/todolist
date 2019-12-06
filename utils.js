@@ -2,7 +2,7 @@ $(document).ready(() => {
   // 取得所有todolist
   $.ajax({
     type: 'GET',
-    url: 'http://localhost:8080/K/todolist/list',
+    url: 'http://kuren.tw/todolist/list',
   }).done((res) => {
     // jQuery 會自動 parse，不用再轉
     $.each(res, (index, el) => {
@@ -10,17 +10,16 @@ $(document).ready(() => {
     })
   });
   // post 新的 todo
-  $('.list-header').on('click', '.btn', callback);
-
+  $('.list-header').on('click', '.btn', addTodo);
   $('.form-control').keypress(function(e) {
-    if (e.key === 'Enter') callback();
+    if (e.key === 'Enter') addTodo();
   })
   // delete todo
   $('.list-group').on('click', '.btn-outline-danger', function(){
     const id = $(this).val();
     $.ajax({
       type: 'DELETE',
-      url: `http://localhost:8080/K/todolist/list/${id}`,
+      url: `http://kuren.tw/todolist/list/${id}`,
     }).done((res) =>{
       $(this).parent().parent().remove();
     })
@@ -32,7 +31,7 @@ $(document).ready(() => {
     const isCompleted = $(this).parent().find('input[type="checkbox"]').prop('checked') ? 1 : 0;
     $.ajax({
       type: 'PATCH',
-      url: `http://localhost:8080/K/todolist/list/${id}`,
+      url: `http://kuren.tw/todolist/list/${id}`,
       data: {
         content,
         isCompleted,
@@ -47,7 +46,7 @@ $(document).ready(() => {
     const isCompleted = $(this).prop('checked') ? 1 : 0;
     $.ajax({
       type: 'PATCH',
-      url: `http://localhost:8080/K/todolist/list/${id}`,
+      url: `http://kuren.tw/todolist/list/${id}`,
       data: {
         content,
         isCompleted,
@@ -75,12 +74,12 @@ function getTodo(id, content, isCompleted) {
   `;
 }
 
-const callback = function callback() {
+const addTodo = function callback() {
   const content = $('.todoContent').val();
   const isCompleted = 0;
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8080/K/todolist/list',
+    url: 'http://kuren.tw/todolist/list',
     data: {
       content,
       isCompleted,
