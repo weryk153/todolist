@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 640px;
+  margin-top: 100px;
+}
+
+.isCompleted {
+  background: rgb(211, 211, 211);
+  text-decoration:line-through;
+}
