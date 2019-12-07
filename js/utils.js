@@ -10,10 +10,9 @@ $(document).ready(() => {
     })
   });
   // post 新的 todo
-  $('.list-header').on('click', '.btn', callback);
-
+  $('.list-header').on('click', '.btn', addTodo);
   $('.form-control').keypress((e) => {
-    if (e.key === 'Enter') callback();
+    if (e.key === 'Enter') addTodo();
   })
   // delete todo
   $('.list-group').on('click', '.btn-outline-danger', function(){
@@ -75,7 +74,7 @@ function getTodo(id, content, isCompleted) {
   `;
 }
 
-const callback = function callback() {
+const addTodo = function callback() {
   const content = $('.todoContent').val();
   const isCompleted = 0;
   $.ajax({
