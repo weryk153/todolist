@@ -13,7 +13,7 @@
       $this->conn = $conn;
     }
 
-    public function getMethod($requestMethod) {      
+    public function handleRequestByMethod($requestMethod) {      
       switch ($requestMethod) {
         case 'GET':
           if (isset($_GET['id'])) {
@@ -42,5 +42,5 @@
     }
   }
   $todo = new todoAPI($conn);
-  $todo->getMethod($_SERVER['REQUEST_METHOD']);
+  $todo->handleRequestByMethod($_SERVER['REQUEST_METHOD']);
 ?>
